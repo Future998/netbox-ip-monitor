@@ -1,0 +1,20 @@
+{% block content %}
+<div class="card">
+  <h5 class="card-header">IP Monitor</h5>
+  <div class="card-body d-flex flex-wrap justify-content-between">
+    {% for ip in ip_addresses %}
+        {% if ip %}
+            {% if ip.pk %}
+                <a href="{% url 'ipam:ipaddress' pk=ip.pk %}" title="{{ ip.address.ip }}&#013;{{ ip.description }}" data-bs-placement="top" data-bs-toggle="tooltip" class="me-1 mb-1">
+            {% else %}
+                <a href="{% url 'ipam:ipaddress_add' %}?address={{ ip.ip }}{% if object.vrf %}&vrf={{ object.vrf_id }}{% endif %}{% if object.tenant %}&tenant={{ object.tenant.pk }}{% endif %}" title="{{ ip.ip }}" data-bs-placement="top" data-bs-toggle="tooltip" class="me-1 mb-1">
+            {% endif %}
+            {% badge ip.short_ip bg_color=ip.get_status_color %}
+        </a>
+        {% else %}
+            {{ ''|placeholder }}
+        {% endif %}
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
