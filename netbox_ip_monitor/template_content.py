@@ -18,13 +18,8 @@ class IPMonitorPrefix(PluginTemplateExtension):
         """
         Return all IPs within this prefix as an IPSet.
         """
-        if prefix_obj.mark_utilized:
-            return netaddr.IPSet()
-
         prefix = netaddr.IPSet(prefix_obj.prefix)
-        child_ranges = []
-        for iprange in prefix_obj.get_child_ranges():
-            child_ranges.append(iprange.range)
+        child_ranges = netaddr.IPSet([iprange.range for iprange in prefix_obj.get_child_ranges().filter(mark_populated=True)])
         ips = prefix - netaddr.IPSet(child_ranges)
 
         # IPv6 /127's, pool, or IPv4 /31-/32 sets are fully usable
