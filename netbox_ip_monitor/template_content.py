@@ -53,6 +53,8 @@ class IPMonitorPrefix(PluginTemplateExtension):
         return "." + str(different_part)
 
     def left_page(self):
+        if isinstance(self.context["object"], IPAddress):
+            return ''
         prefix = Prefix.objects.get(prefix=str(self.context["object"]))
         if (
             prefix.status == PrefixStatusChoices.STATUS_CONTAINER
