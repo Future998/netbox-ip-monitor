@@ -12,6 +12,7 @@ IP monitor to display all IP addresses in a prefix
 
 | NetBox Version| Plugin Version|
 |---------------|---------------|
+| 4.4           | >= 0.1.1      |
 | 4.3           | >= 0.1.0      |
 | 4.2           | >= 0.0.0, < 0.1.0      |
 | 3.X           | 0.0.0         |
