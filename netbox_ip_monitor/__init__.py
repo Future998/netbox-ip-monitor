@@ -10,6 +10,5 @@ class NetBoxIPMonitorConfig(PluginConfig):
     author = 'Alexander Burmatov'
     author_email = 'burmatov202002@gmail.com'
     min_version = '4.3.0'
-    max_version = '4.5.99'
 
 config = NetBoxIPMonitorConfig
